@@ -1,0 +1,122 @@
+classDiagram
+    class Person {
+        -id: String
+        -name: String
+        -lastName: String
+        -age: int
+        -gender: String
+        -typeDoc: TypeDoc
+        -location: Location
+        +getId() String
+        +getName() String
+        +getLastName() String
+        +getAge() int
+        +getGender() String
+        +getTypeDoc() TypeDoc
+        +getLocation() Location
+        +setId(id: String) void
+        +setName(name: String) void
+        +setLastName(lastName: String) void
+        +setAge(age: int) void
+        +setGender(gender: String) void
+        +setTypeDoc(typeDoc: TypeDoc) void
+        +setLocation(location: Location) void
+    }
+    
+    class Parameter {
+        -code: String
+        -description: String
+        +getCode() String
+        +getDescription() String
+        +setCode(code: String) void
+        +setDescription(description: String) void
+    }
+    
+    class TypeDoc {
+        +getNit() String
+        +getCc() String
+    }
+    
+    class Location {
+        -stateCode: String
+        -isCapital: boolean
+        +getStateCode() String
+        +isCapital() boolean
+        +setStateCode(stateCode: String) void
+        +setCapital(isCapital: boolean) void
+    }
+    
+    class TreeN {
+        -root: NodeN
+        +create_person(person: Person) void
+        +get_persons() List~Person~
+        +update_person(id: String, person: Person) Bool
+        +delete_person(id: String) Bool
+        +get_persons_with_adult_child() List~Person~
+        +filter_by_location_typedoc_gender(loc: Str, td: Str, g: Str) List~Person~
+        +get_persons_by_location(location: Str) List~Person~
+    }
+    
+    class NodeN {
+        -person: Person
+        -children: List~NodeN~
+        +add_child(child: NodeN) void
+        +remove_child_by_id(id: Str) void
+    }
+    
+    class PersonController {
+        -service: PersonService
+        +create_person(person_data: PersonCreate) void
+        +update_person(id: Str, person_data: PersonUpdate) Bool
+        +delete_person(id: Str) Bool
+        +get_persons_with_adult_child() List~Person~
+        +filter_by_location_typedoc_gender(loc: Str, td: Str, g: Str) List~Person~
+        +get_persons_by_location(location: Str) List~Person~
+    }
+    
+    class TypeDocController {
+        -service: TypeDocService
+        +get_all() List~TypeDoc~
+    }
+    
+    class LocationController {
+        -service: LocationService
+        +get_states() List~Location~
+        +get_locations_by_state_code(state_code: str) List~Location~
+        +get_location_by_code(code: str) Location
+        +get_capitals() List~Location~
+    }
+    
+    class PersonService {
+        -tree: TreeN
+        +create_person() void
+        +update_person() void
+        +delete_person() void
+        +get_persons_with_adult_child() List~Person~
+        +filter_by_location_typedoc_gender() List~Person~
+        +get_persons_by_location() List~Person~
+        +get_pets_by_name() List~Pet~
+    }
+    
+    class TypeDocService {
+        +get_all() List~TypeDoc~
+    }
+    
+    class LocationService {
+        +get_states() List~Location~
+        +get_locations_by_state_code(state_code: Str) List~Location~
+        +get_location_by_code(code: Str) Location
+        +get_capitals() List~Location~
+        +load_locations_from_csv(file_path: Str) void
+    }
+
+    TypeDoc --|> Parameter : hereda
+    Location --|> Parameter : hereda
+    Person "1" o-- "1" TypeDoc : usa
+    Person "1" o-- "1" Location : tiene
+    TreeN "1" *-- "1" NodeN : contiene
+    NodeN "1" *-- "1" Person : contiene
+    NodeN "1" o-- "0..*" NodeN : tiene hijos
+    PersonController ..> PersonService : usa
+    TypeDocController ..> TypeDocService : usa
+    LocationController ..> LocationService : usa
