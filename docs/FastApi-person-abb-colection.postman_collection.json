@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "4e5841ca-bb0b-4d9e-9190-ae9f90170344",
+		"name": "FastApi-person-abb-colection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42563774"
+	},
+	"item": [
+		{
+			"name": "Cargar archivo CSV de ubicaciones.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1f02b767-a369-4c60-a298-daf3f4ebbc5e"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/locations/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los estados.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/locations/states"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener ubicaciones por estado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/locations/by-state/CALDAS"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener ubicación por código.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/locations/by-code/05001"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las capitales.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/locations/capitals"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una nueva persona.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Juan Arias\",\r\n    \"age\": 19,\r\n    \"document_type\": \"CC\",  // Tipo de documento\r\n    \"document_number\": \"1054860943\"  // Número de documento\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/persons/add"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las personas.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/persons"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener persona por ID.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/persons/1109780108"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los Typedocs.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/typedocs"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un nuevo Typedoc.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"1054860943\",\r\n  \"description\": \"Cédula de ciudadanía\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/typedocs/add"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza persona",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Juan Arias\",\r\n  \"age\": 19,\r\n  \"document_type\": \"CC\",\r\n  \"document_number\": \"1054860943\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/persons/1054860943"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar persona",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/persons/1054860943"
+			},
+			"response": []
+		}
+	]
+}
